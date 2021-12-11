@@ -4,9 +4,9 @@ import { Navbar, Container, Nav, NavDropdown, Form, FormControl, Button } from '
 const Header = () => {
     return (
         <div>
-          <Navbar bg="primary" expand="lg">
+          <Navbar id="nav" expand="lg">
             <Container fluid>
-                <Navbar.Brand href="#" className="mx-3 text-success" id="navbrand">NoteSafe</Navbar.Brand>
+                <Navbar.Brand href="#" className="mx-3" id="navbrand">NoteSafe</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                 <Nav
@@ -14,10 +14,10 @@ const Header = () => {
                     style={{ maxHeight: '100px' }}
                     navbarScroll
                     >
-                    <Nav.Link href="#action1" style={{color:'white'}}>Notes</Nav.Link>
+                    <Nav.Link href="#action1" id="navlink">Notes</Nav.Link>
                     <NavDropdown title="User" id="navbarScrollingDropdown">
-                    <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
+                    <NavDropdown.Item href="#action3" className="hovercolor">Profile</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4" className="hovercolor">Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 <Form className="d-flex">
@@ -27,7 +27,7 @@ const Header = () => {
                     className=""
                     aria-label="Search"
                     />
-                    <Button variant="outline-success" className="mx-4">Search</Button>
+                    <Button variant="outline-light" className="mx-4">Search</Button>
                 </Form>
                 </Navbar.Collapse>
             </Container>

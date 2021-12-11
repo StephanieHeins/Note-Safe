@@ -37,11 +37,22 @@
   }
 }
 
-#navbarScrollingDropdown {
-  color: white;
+#navbarScrollingDropdown, #navlink {
+  color: rgb(239, 219, 248);
 }
 
 #navbrand {
   font-weight: bold;
   font-size: 25px;
+  color: rgb(176, 144, 194);
 }
+
+#nav, #foot {
+  background-color: rgb(87, 80, 124);
+}
+
+.hovercolor:hover {
+  background-color: rgb(176, 144, 194);
+}
+
+

@@ -6,7 +6,7 @@ const Footer = () => {
         <div>
             <Row>
                 <Col 
-                className="py-3 bg-primary text-center text-success">© 2021 NoteSafe</Col>
+                className="py-3 text-center" id="foot">© 2021 NoteSafe</Col>
             </Row>
         </div>
     )
