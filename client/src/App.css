@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+#navbarScrollingDropdown {
+  color: white;
+}
+
+#navbrand {
+  font-weight: bold;
+  font-size: 25px;
+}
