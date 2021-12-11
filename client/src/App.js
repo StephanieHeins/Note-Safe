@@ -5,7 +5,6 @@ import Landing from "./pages/Landing"
 
 function App() {
   return (
-    <div className="App">
       <>
         <Header />
         <main>
@@ -13,7 +12,6 @@ function App() {
         </main>
         <Footer />
       </>
-    </div>
   );
 }
 
