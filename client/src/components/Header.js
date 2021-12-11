@@ -14,14 +14,10 @@ const Header = () => {
                     style={{ maxHeight: '100px' }}
                     navbarScroll
                     >
-                    <Nav.Link href="#action1" style={{color:'white'}}>Home</Nav.Link>
-                    <NavDropdown title="Link" id="navbarScrollingDropdown">
-                    <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action5">
-                        Something else here
-                    </NavDropdown.Item>
+                    <Nav.Link href="#action1" style={{color:'white'}}>Notes</Nav.Link>
+                    <NavDropdown title="User" id="navbarScrollingDropdown">
+                    <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 <Form className="d-flex">
