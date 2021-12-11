@@ -41,6 +41,11 @@
   color: rgb(239, 219, 248);
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 #navbrand {
   font-weight: bold;
   font-size: 25px;
@@ -52,7 +57,10 @@
 }
 
 .hovercolor:hover {
-  background-color: rgb(176, 144, 194);
+  background-color: rgb(153, 214, 196);
 }
 
-
+.searchbtn {
+  border-color: white;
+  color: white;
+}

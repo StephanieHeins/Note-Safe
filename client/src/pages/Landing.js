@@ -7,7 +7,7 @@ const Landing = () => {
         <div>
             <div className="main">
                 <Container>
-                    <Row>
+                    <Row className="text-center">
                         <div>
                             <h1>
                                 Welcome to NoteSafe
