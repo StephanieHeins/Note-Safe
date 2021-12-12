@@ -3,6 +3,7 @@ import React, { useState} from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import MainScreen from '../components/MainScreen';
 import './Styles/Login.css';
+import Loading from '../components/Loading';
 
 const Login = () => {
 
@@ -37,6 +38,7 @@ const Login = () => {
     return (
         <div>
             <MainScreen title="Login">
+                {loading && <Loading />}
             <Container>
                 <Row>
                 <Col></Col>
