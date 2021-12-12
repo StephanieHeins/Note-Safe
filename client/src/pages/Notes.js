@@ -28,10 +28,19 @@ const Notes = () => {
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                        Note content...
+                            Note content...
                         </Card.Text>
-                        <Button variant="primary">Edit</Button>
-                        <Button variant="primary" className="mx-3">Delete</Button>
+                        <Row>
+                            <Col>
+                                <Button variant="primary">Edit</Button>
+                                <Button variant="primary" className="mx-3">Delete</Button>
+                            </Col>
+                            <Col className="mt-3">
+                                <Card.Text className="text-end" id="notedate">
+                                    Written on 12-12-2021
+                                </Card.Text>
+                            </Col>
+                        </Row>
                     </Card.Body>
                 </Card>
             </Row>
