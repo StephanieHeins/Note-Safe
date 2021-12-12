@@ -6,6 +6,13 @@ import { Button, Row, Card, Col } from 'react-bootstrap';
 import noteinfo, {} from '../data/noteinfo';
 
 const Notes = () => {
+
+    const deleteHandler = (id) => {
+        if (window.confirm("Delete this note?")) {
+
+        }
+    };
+
     return (
         <MainScreen title="Welcome User">
 
@@ -37,8 +44,18 @@ const Notes = () => {
                         </Card.Text>
                         <Row>
                             <Col>
-                                <Button variant="primary" className="me-3 mt-1">Edit</Button>
-                                <Button variant="primary" className="mt-1">Delete</Button>
+                                <Button 
+                                    variant="primary" 
+                                    className="me-3 mt-1"
+                                    href={`/note/${note._id}`}
+                                    >Edit
+                                </Button>
+                                <Button 
+                                    variant="primary" 
+                                    className="mt-1"
+                                    onClick={()=>deleteHandler(note._id)}
+                                    >Delete
+                                </Button>
                             </Col>
                             <Col className="mt-3">
                                 <Card.Text className="text-end mt-1" id="notedate">
