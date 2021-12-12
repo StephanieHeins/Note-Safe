@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState} from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import MainScreen from '../components/MainScreen';
@@ -10,9 +11,27 @@ const Login = () => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
-        console.log(email, password);
+        try {
+            const config = {
+                headers: {
+                    "Content-type":"application/json"
+                }
+            }
+            setLoading(true)
+            const {data} = await axios.post(
+                '/api/users/login', 
+                {
+                email, password
+                }, 
+            config);
+            console.log(data);
+            localStorage.setItem('userInfo', JSON.stringify(data));
+            setLoading(false)
+        } catch (error) {
+            setError(error.response.data.message);
+        }
     };
 
     return (
