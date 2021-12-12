@@ -23,7 +23,7 @@ const Landing = () => {
                                     Login
                                 </Button>
                             </a>
-                            <a href="/signup" >
+                            <a href="/register" >
                                 <Button className="mx-3 btn-lg">
                                     Signup
                                 </Button>
