@@ -2,7 +2,7 @@ import React from 'react'
 import './Styles/Notes.css'
 import MainScreen from '../components/MainScreen'
 import { Link } from 'react-router-dom';
-import { Button, Row, Card, Col } from 'react-bootstrap';
+import { Button, Row, Card, Col, Accordion } from 'react-bootstrap';
 import noteinfo, {} from '../data/noteinfo';
 
 const Notes = () => {
@@ -17,27 +17,36 @@ const Notes = () => {
         <MainScreen title="Welcome User">
 
             <Row className="text-center">
+              <Col>
                 <Link to="/CreateNote">
-                    <Button className="">
+                    <Button>
                         New Note
-                    </Button>
+                    </Button> 
                 </Link>
+              </Col>
             </Row>
 
             <Row>
             {noteinfo.map((note) => (   
 
+            <Accordion flush>
+            <Accordion.Item eventKey="0">
+
                 <Card className="my-4">
                     <Card.Header>
                         <Row>
-                        <Col id="notetitle">
-                            {note.title}
-                        </Col>
-                        <Col className="text-end mt-2">
-                            {note.category}
-                        </Col>
+                        <Accordion.Header>
+                            <Col xs={8} id="notetitle">
+                                {note.title}
+                            </Col>
+                            <Col className="text-end mt-2 px-3">
+                                {note.category}
+                            </Col>
+                        </Accordion.Header>
                         </Row>
                     </Card.Header>
+
+                    <Accordion.Body>
                     <Card.Body>
                         <Card.Text>
                             {note.content}
@@ -64,11 +73,14 @@ const Notes = () => {
                             </Col>
                         </Row>
                     </Card.Body>
+                    </Accordion.Body>
                 </Card>
 
+            </Accordion.Item>
+            </Accordion>
 
             ))}
-                </Row>
+            </Row>
         </MainScreen>
     )
 }
