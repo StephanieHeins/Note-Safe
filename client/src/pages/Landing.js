@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Styles/Landing.css'
 import { Container, Row, Button } from 'react-bootstrap';
+import { Navigate } from 'react-router-dom';
 
-const Landing = () => {
+const Landing = ({history}) => {
+
+    // useEffect(() => {
+    //     const userInfo = localStorage.getItem("userInfo");
+    //     if (userInfo){
+    //         [history].push("/notes");
+    //         <Navigate to="/notes" />
+    //     }
+    // }, [history])
+
     return (
         <div>
             <div className="main">
