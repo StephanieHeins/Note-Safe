@@ -1,6 +1,7 @@
-import React from 'react'
-import './Styles/Notes.css'
-import MainScreen from '../components/MainScreen'
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import './Styles/Notes.css';
+import MainScreen from '../components/MainScreen';
 import { Link } from 'react-router-dom';
 import { Button, Row, Card, Col, Accordion } from 'react-bootstrap';
 import noteinfo, {} from '../data/noteinfo';
@@ -12,6 +13,15 @@ const Notes = () => {
 
         }
     };
+
+    const fetchNotes = async() => {
+        const data = await axios.get('/api/noteinfo');
+        console.log(data);
+    }
+
+    useEffect(() => {
+        fetchNotes();
+    }, [])
 
     return (
         <MainScreen title="Welcome User">
