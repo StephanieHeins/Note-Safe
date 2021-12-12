@@ -5,6 +5,7 @@ import './Styles/Login.css';
 import { Link } from 'react-router-dom';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
+import axios from 'axios';
 
 const Register = () => {
 
@@ -20,14 +21,47 @@ const Register = () => {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const submitHandler = async (e) => {
+        e.preventDefault()
+
+        if (password !== confirmPassword) {
+            setMessage('Passwords do not match.')
+        } else {
+            setMessage(null)
+            try {
+                const config = {
+                    headers: {
+                        "Content-type": "application/json",
+                    },
+                };
+
+                setLoading(true);
+                const { data } = await axios.post(
+                    "/api/users",
+                    { name, pic, email, password },
+                    config
+                );
+
+                setLoading(false);
+                localStorage.setItem("userInfo", JSON.stringify(data));
+
+            } catch (error) {
+                setError(error.response.data.message);
+            }
+        }
+    }
+
     return (
         <div>
             <MainScreen title="Signup">
             <Container>
+                {error && <ErrorMessage variant="primary">{error}</ErrorMessage>}
+                {message && <ErrorMessage variant="primary">{message}</ErrorMessage>}
+                {loading && <Loading />}
                 <Row>
                 <Col></Col>
                 <Col xs={6}>
-                    <Form>
+                    <Form onSubmit={submitHandler}>
 
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label className="formlabel">Name</Form.Label>
@@ -79,7 +113,7 @@ const Register = () => {
 
                     <Row className="text-center">
                         <Col>
-                            <Button>
+                            <Button type="submit">
                                 Signup
                             </Button> 
                         </Col>
