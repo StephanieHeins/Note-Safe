@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Styles/Notes.css';
 import MainScreen from '../components/MainScreen';
 import { Link } from 'react-router-dom';
 import { Button, Row, Card, Col, Accordion } from 'react-bootstrap';
-import noteinfo, {} from '../data/noteinfo';
 
 const Notes = () => {
+
+    const [noteinfo, setNoteinfo] = useState([])
 
     const deleteHandler = (id) => {
         if (window.confirm("Delete this note?")) {
@@ -15,9 +16,11 @@ const Notes = () => {
     };
 
     const fetchNotes = async() => {
-        const data = await axios.get('/api/noteinfo');
-        console.log(data);
-    }
+        const { data } = await axios.get('/api/noteinfo');
+        setNoteinfo(data);
+    };
+
+    console.log(noteinfo);
 
     useEffect(() => {
         fetchNotes();
@@ -39,7 +42,7 @@ const Notes = () => {
             <Row>
             {noteinfo.map((note) => (   
 
-            <Accordion flush>
+            <Accordion key={note._id} flush>
             <Accordion.Item eventKey="0">
 
                 <Card className="my-4">
