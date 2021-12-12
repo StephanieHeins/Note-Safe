@@ -5,6 +5,7 @@ import MainScreen from '../components/MainScreen';
 import './Styles/Login.css';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -12,6 +13,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
 
     const submitHandler = async (e) => {
         e.preventDefault()
@@ -36,6 +38,13 @@ const Login = () => {
             setLoading(false);
         }
     };
+
+        useEffect(() => {
+        const userInfo = localStorage.getItem("userInfo");
+        if (userInfo){
+            navigate('/notes');
+        }
+    })
 
     return (
         <div>

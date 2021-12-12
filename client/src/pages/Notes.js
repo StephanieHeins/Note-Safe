@@ -27,7 +27,7 @@ const Notes = () => {
     }, [])
 
     return (
-        <MainScreen title="Welcome User">
+        <MainScreen title="Welcome">
 
             <Row className="text-center">
               <Col>

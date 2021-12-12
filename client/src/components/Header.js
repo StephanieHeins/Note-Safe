@@ -1,8 +1,11 @@
 import React from 'react';
 import { Navbar, Container, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
+
+    const navigate = useNavigate()
+
     return (
         <div>
           <Navbar id="nav" expand="lg">
@@ -22,7 +25,10 @@ const Header = () => {
                     </Nav.Link>
                     <NavDropdown title="User" id="navbarScrollingDropdown">
                     <NavDropdown.Item href="#action3" className="hovercolor">Profile</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4" className="hovercolor">Logout</NavDropdown.Item>
+                    <NavDropdown.Item className="hovercolor" onClick={() => {
+                        localStorage.removeItem("userInfo");
+                        navigate('/');
+                    }}>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 <Form className="d-flex">
