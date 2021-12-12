@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import MainScreen from '../components/MainScreen';
 import './Styles/Login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
 import axios from 'axios';
@@ -20,6 +20,7 @@ const Register = () => {
     const [picMessage, setPicMessage] = useState("");
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
 
     const submitHandler = async (e) => {
         e.preventDefault()
@@ -50,6 +51,13 @@ const Register = () => {
             }
         }
     }
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("userInfo");
+        if (userInfo){
+            navigate('/notes');
+        }
+    })
 
     return (
         <div>

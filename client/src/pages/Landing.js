@@ -5,14 +5,6 @@ import { Navigate } from 'react-router-dom';
 
 const Landing = ({history}) => {
 
-    // useEffect(() => {
-    //     const userInfo = localStorage.getItem("userInfo");
-    //     if (userInfo){
-    //         [history].push("/notes");
-    //         <Navigate to="/notes" />
-    //     }
-    // }, [history])
-
     return (
         <div>
             <div className="main">
