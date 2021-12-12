@@ -3,7 +3,7 @@ import './Styles/Landing.css'
 import { Container, Row, Button } from 'react-bootstrap';
 import { Navigate } from 'react-router-dom';
 
-const Landing = ({history}) => {
+const Landing = () => {
 
     return (
         <div>
