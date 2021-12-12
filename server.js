@@ -7,6 +7,7 @@ const userRoutes = require("./routes/userRoutes");
 const app = express();
 dotenv.config();
 connectDB();
+app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 
