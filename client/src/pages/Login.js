@@ -4,6 +4,7 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import MainScreen from '../components/MainScreen';
 import './Styles/Login.css';
 import Loading from '../components/Loading';
+import ErrorMessage from '../components/ErrorMessage';
 
 const Login = () => {
 
@@ -31,13 +32,15 @@ const Login = () => {
             localStorage.setItem('userInfo', JSON.stringify(data));
             setLoading(false)
         } catch (error) {
-            setError(error.response.data.message);
+            setError(error.response.data.message)
+            setLoading(false);
         }
     };
 
     return (
         <div>
             <MainScreen title="Login">
+                {error && <ErrorMessage variant="primary">{error}</ErrorMessage>}
                 {loading && <Loading />}
             <Container>
                 <Row>
