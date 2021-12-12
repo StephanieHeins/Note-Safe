@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState} from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import MainScreen from '../components/MainScreen';
 import './Styles/Login.css';
 
 const Login = () => {
+
+    const [email, setEmail] =  useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        console.log(email, password);
+    };
+
     return (
         <div>
             <MainScreen title="Login">
@@ -11,10 +22,15 @@ const Login = () => {
                 <Row>
                 <Col></Col>
                 <Col xs={6}>
-                <Form>
+                <Form onSubmit={submitHandler}>
                     <Form.Group className="my-3" controlId="formBasicEmail">
                         <Form.Label className="formlabel">Email</Form.Label>
-                        <Form.Control type="email" placeholder="john@example.com" />
+                        <Form.Control 
+                            type="email" 
+                            value={email}
+                            placeholder="john@example.com" 
+                            onChange={(e) => setEmail (e.target.value)}
+                        />
                         <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                         </Form.Text>
@@ -22,12 +38,17 @@ const Login = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Label className="formlabel">Password</Form.Label>
-                        <Form.Control type="password" placeholder="P@ssw0Rd" />
+                        <Form.Control 
+                            type="password" 
+                            value={password}
+                            placeholder="P@ssw0Rd" 
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
                     </Form.Group>
 
                     <Row className="text-center">
                         <Col>
-                            <Button>
+                            <Button type="submit">
                                 Login
                             </Button> 
                         </Col>
