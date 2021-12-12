@@ -1,7 +1,8 @@
 const express = require("express");
 const noteinfo = require("./data/noteinfo");
 const dotenv = require("dotenv");
-const connectDB = require("./config/db")
+const connectDB = require("./config/db");
+const userRoutes = require("./routes/userRoutes");
 
 const app = express();
 dotenv.config();
@@ -19,6 +20,8 @@ app.get("/api/noteinfo/:id", (req, res) => {
     const note = noteinfo.find((n)=>n._id===req.params.id);
     res.send(note);
 })
+
+app.use('/api/users', userRoutes)
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
