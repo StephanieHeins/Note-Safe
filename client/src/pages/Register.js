@@ -5,7 +5,8 @@ import './Styles/Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 import ErrorMessage from '../components/ErrorMessage';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../actions/userActions';
 
 const Register = () => {
 
@@ -18,46 +19,29 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState("");
     const [picMessage, setPicMessage] = useState("");
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const userRegister =  useSelector((state) => state.userRegister);
+    const { loading, error, userInfo } = userRegister;
     const navigate = useNavigate()
-
-    const submitHandler = async (e) => {
-        e.preventDefault()
-
-        if (password !== confirmPassword) {
-            setMessage('Passwords do not match.')
-        } else {
-            setMessage(null)
-            try {
-                const config = {
-                    headers: {
-                        "Content-type": "application/json",
-                    },
-                };
-
-                setLoading(true);
-                const { data } = await axios.post(
-                    "/api/users",
-                    { name, pic, email, password },
-                    config
-                );
-
-                setLoading(false);
-                localStorage.setItem("userInfo", JSON.stringify(data));
-
-            } catch (error) {
-                setError(error.response.data.message);
-            }
-        }
-    }
 
     useEffect(() => {
         const userInfo = localStorage.getItem("userInfo");
         if (userInfo){
             navigate('/notes');
         }
-    })
+    }, [userInfo]);
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        if (password !== confirmPassword) {
+            setMessage('Passwords do not match.')
+        } else {
+            setMessage(null)
+            dispatch(register(name, email, password, pic))
+            navigate('/notes');
+        }
+    }
 
     return (
         <div>
