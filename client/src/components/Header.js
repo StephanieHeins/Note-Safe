@@ -1,10 +1,21 @@
 import React from 'react';
 import { Navbar, Container, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../actions/userActions';
 
 const Header = () => {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    const logoutHandler = () => {
+        dispatch(logout())
+        navigate('/');
+
+    }
 
     return (
         <div>
@@ -25,10 +36,7 @@ const Header = () => {
                     </Nav.Link>
                     <NavDropdown title="User" id="navbarScrollingDropdown">
                     <NavDropdown.Item href="#action3" className="hovercolor">Profile</NavDropdown.Item>
-                    <NavDropdown.Item className="hovercolor" onClick={() => {
-                        localStorage.removeItem("userInfo");
-                        navigate('/');
-                    }}>Logout</NavDropdown.Item>
+                    <NavDropdown.Item className="hovercolor" onClick={logoutHandler}>Logout</NavDropdown.Item>
                     </NavDropdown>
                 </Nav>
                 <Form className="d-flex">
