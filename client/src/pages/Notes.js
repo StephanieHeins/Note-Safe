@@ -4,27 +4,33 @@ import './Styles/Notes.css';
 import MainScreen from '../components/MainScreen';
 import { Link } from 'react-router-dom';
 import { Button, Row, Card, Col, Accordion } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { listNotes } from "../actions/noteActions";
 
 const Notes = () => {
+    const dispatch = useDispatch();
 
-    const [noteinfo, setNoteinfo] = useState([])
+    const noteList = useSelector(state => state.noteList)
+    const { loading, notes, error } = noteList;
+
+    // const [noteinfo, setNoteinfo] = useState([])
 
     const deleteHandler = (id) => {
         if (window.confirm("Delete this note?")) {
-
         }
     };
 
-    const fetchNotes = async() => {
-        const { data } = await axios.get('/api/noteinfo');
-        setNoteinfo(data);
-    };
+    // const fetchNotes = async() => {
+    //     const { data } = await axios.get('/api/noteinfo');
+    //     setNoteinfo(data);
+    // };
 
-    console.log(noteinfo);
+    //console.log(noteinfo);
 
     useEffect(() => {
-        fetchNotes();
-    }, [])
+        // fetchNotes();
+        dispatch(listNotes())
+    }, [dispatch])
 
     return (
         <MainScreen title="Welcome">
@@ -40,7 +46,7 @@ const Notes = () => {
             </Row>
 
             <Row>
-            {noteinfo.map((note) => (   
+            {notes?.map((note) => (   
 
             <Accordion key={note._id} flush>
             <Accordion.Item eventKey="0">
