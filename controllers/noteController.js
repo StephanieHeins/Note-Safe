@@ -12,7 +12,7 @@ const createNote = asyncHandler (async(req, res) => {
 
     if (!title || !content || !category) {
         res.status(400)
-        throw new Error("Please fill all fields");
+        throw new Error("Please fill out all fields");
     }
     else {
         const note = new Note({ user: req.user._id, title, content, category });
@@ -22,4 +22,16 @@ const createNote = asyncHandler (async(req, res) => {
     }
 });
 
-module.exports = { getNotes, createNote }
+const getNoteById = asyncHandler(
+    async (req, res) => {
+        const note = await Note.findById(req.params.id);
+
+        if (note) {
+            res.json(note);
+        } else {
+            res.status(404).json({ message: "Note not found" });
+        }
+    }
+);
+
+module.exports = { getNotes, createNote, getNoteById }
