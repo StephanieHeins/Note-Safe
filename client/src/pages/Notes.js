@@ -42,7 +42,7 @@ const Notes = () => {
     }, [dispatch])
 
     return (
-        <MainScreen title="Welcome">
+        <MainScreen title={`Welcome ${userInfo.name}`}>
 
             <Row className="text-center">
               <Col>
@@ -98,7 +98,7 @@ const Notes = () => {
                             </Col>
                             <Col className="mt-3">
                                 <Card.Text className="text-end mt-1" id="notedate">
-                                    Written on 12-12-2021
+                                    Written on {note.createdAt.substring(0, 10)}
                                 </Card.Text>
                             </Col>
                         </Row>
