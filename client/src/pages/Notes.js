@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import './Styles/Notes.css';
 import MainScreen from '../components/MainScreen';
-import { Link } from 'react-router-dom';
+import Loading from "../components/Loading";
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Row, Card, Col, Accordion } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { listNotes } from "../actions/noteActions";
+import ErrorMessage from '../components/ErrorMessage';
 
 const Notes = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const noteList = useSelector(state => state.noteList)
+    const noteList = useSelector((state) => state.noteList)
     const { loading, notes, error } = noteList;
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
 
     // const [noteinfo, setNoteinfo] = useState([])
 
@@ -29,7 +35,10 @@ const Notes = () => {
 
     useEffect(() => {
         // fetchNotes();
-        dispatch(listNotes())
+        dispatch(listNotes());
+        if (!userInfo){
+            navigate('/');
+        }
     }, [dispatch])
 
     return (
@@ -46,6 +55,8 @@ const Notes = () => {
             </Row>
 
             <Row>
+            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            {loading && <Loading />}
             {notes?.map((note) => (   
 
             <Accordion key={note._id} flush>
