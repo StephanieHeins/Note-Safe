@@ -55,7 +55,7 @@ const Notes = () => {
             </Row>
 
             <Row>
-            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            {error && <ErrorMessage variant="primary">{error}</ErrorMessage>}
             {loading && <Loading />}
             {notes?.map((note) => (   
 
